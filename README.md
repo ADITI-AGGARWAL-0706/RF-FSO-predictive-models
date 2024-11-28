@@ -52,10 +52,10 @@ Step 4: Model Evaluation
 
 4.Code Structure
 
-📂 Hybrid-RF-FSO-Modeling
-├── 📁 data/
+Hybrid-RF-FSO-Modeling
+├── data/
 │   ├── RFLFSODataFull.csv         
-├── 📂 notebooks/
+├── notebooks/
 │   ├── 1_data_preprocessing.ipynb 
 │   ├── 2_feature_selection.ipynb 
 │   ├── 3_generic_model.ipynb     

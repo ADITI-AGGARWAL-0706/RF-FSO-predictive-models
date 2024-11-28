@@ -54,14 +54,14 @@ Step 4: Model Evaluation
 
 📂 Hybrid-RF-FSO-Modeling
 ├── 📁 data/
-│   ├── RFLFSODataFull.csv          # Full dataset used for training and testing
+│   ├── RFLFSODataFull.csv         
 ├── 📂 notebooks/
-│   ├── 1_data_preprocessing.ipynb # Data preprocessing and cleaning steps
-│   ├── 2_feature_selection.ipynb  # Feature ranking and selection algorithm
-│   ├── 3_generic_model.ipynb      # Implementation of the Generic Model
-│   ├── 4_specific_model.ipynb     # Implementation of the Specific Model
-│   ├── 5_results_analysis.ipynb   # Final analysis and comparison of models
-├── README.md                      # Project documentation
+│   ├── 1_data_preprocessing.ipynb 
+│   ├── 2_feature_selection.ipynb 
+│   ├── 3_generic_model.ipynb     
+│   ├── 4_specific_model.ipynb     
+│   ├── 5_results_analysis.ipynb  
+├── README.md                      
 
 5.Results Summary
 Key Observations

@@ -31,17 +31,17 @@ These methods aimed to better preserve correlation structures and mutual informa
 The dataset consists of 27 meteorological features along with RF and FSO attenuation values.
 
 **Target Variables:**  
-- `RFL_Att`: RF signal attenuation  
-- `FSO_Att`: FSO signal attenuation  
+- RFL_Att: RF signal attenuation  
+- FSO_Att: FSO signal attenuation  
 
 **Weather Classification (SYNOP Codes):**  
-- `0`: Clear  
-- `3`: Dust Storm  
-- `4`: Fog  
-- `5`: Drizzle  
-- `6`: Rain  
-- `7`: Snow  
-- `8`: Showers  
+- 0: Clear  
+- 3: Dust Storm  
+- 4: Fog  
+- 5: Drizzle  
+- 6: Rain  
+- 7: Snow  
+- 8: Showers  
 
 **Splits:**  
 - Training Set: Used to build and tune models  
@@ -67,10 +67,10 @@ The dataset consists of 27 meteorological features along with RF and FSO attenua
 
 **Step 4: Hyperparameter Tuning**  
 - Grid search with cross-validation was used to find optimal parameters:  
-  - `n_estimators`: [50, 100, 150, 200]  
-  - `max_depth`: [5, 10, 20, None]  
-  - `min_samples_split`: [2, 5, 10]  
-  - `max_features`: ['sqrt', 'log2', None]  
+  - n_estimators: [50, 100, 150, 200]  
+  - max_depth: [5, 10, 20, None]  
+  - min_samples_split: [2, 5, 10]  
+  - max_features: ['sqrt', 'log2', None]  
 
 ## 4. Code Structure
 
@@ -90,23 +90,13 @@ Hybrid-RF-FSO-Modeling/
 ├── README.md
 ```
 
-## 5. Results Summary
 
-### Key Observations
-- **Generic FSO Model:** Delivered consistent RMSE across weather types; Specific Model performed better in Fog and Snow.
-- **Generic RF Model:** Achieved lower RMSE and higher R² than Specific RF models in most conditions.
-- **Specific Models:** Strong performance in Clear, Drizzle, and Rain (in terms of R²).
-
-### Visualizations
-- RMSE and R² plots for both Generic and Specific models included.
-- Comparative graphs across weather conditions provided.
-
-## 6. Installation and Usage
+## 5. Installation and Usage
 
 ### Requirements
 - Python 3.8+  
 - Jupyter Notebook  
-- Python Libraries: `pandas`, `numpy`, `matplotlib`, `scikit-learn`
+- Python Libraries: pandas, numpy, matplotlib, scikit-learn
 
 ### Setup Instructions
 ```bash
@@ -117,9 +107,4 @@ jupyter notebook
 ```
 Open and execute notebooks sequentially from the `/notebooks` directory.
 
-## 7. Future Enhancements
 
-- Explore advanced feature engineering techniques to improve accuracy.
-- Incorporate real-time weather data for dynamic retraining.
-- Add additional environmental features to boost prediction robustness.
-- Compare other ML models (e.g., XGBoost, neural networks) for extended benchmarking.

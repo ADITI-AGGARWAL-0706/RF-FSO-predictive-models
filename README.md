@@ -2,7 +2,7 @@
 
 This repository contains the full pipeline for building, comparing, and evaluating predictive models to estimate RF and FSO signal attenuation under a variety of weather conditions. The project leverages machine learning techniques—specifically Random Forest regression—to create robust, weather-adaptive hybrid communication models. Both generic and weather-specific models were evaluated in Part A, while Part B introduced enhanced modeling techniques that incorporate interdependent signal prediction.
 
-Table of Contents
+-> Table of Contents
 -Introduction
 -Dataset Description
 -Project Workflow
@@ -11,7 +11,7 @@ Table of Contents
 -Installation and Usage
 -Future Enhancements
 
-Introduction
+-> Introduction
 Hybrid RF/FSO communication systems are highly sensitive to atmospheric conditions. The objective of this project is to develop machine learning models that can accurately predict signal attenuation for both RF and FSO links under a range of environmental scenarios—such as fog, rain, dust, snow, and more.
 
 Part A:
@@ -25,14 +25,14 @@ I introduced two advanced models that integrate predictions between RF and FSO d
 -FSO-Enhanced RF Model: Uses predicted FSO attenuation to enhance RF attenuation modeling.
 These methods aimed to better preserve correlation structures and mutual information between the signal types, resulting in improved model performance.
 
-Dataset Description
+-> Dataset Description
 The dataset consists of 27 meteorological features along with RF and FSO attenuation values.
 
 Target Variables:
 -RFL_Att: RF signal attenuation
 -FSO_Att: FSO signal attenuation
 
-Weather Classification (SYNOP Codes):
+-> Weather Classification (SYNOP Codes):
 0: Clear
 3: Dust Storm
 4: Fog
@@ -45,7 +45,7 @@ Splits:
 -Training Set: Used to build and tune models
 -Test Set: Used for performance evaluation
 
-Project Workflow
+-> Project Workflow
 Step 1: Data Preprocessing
 -Data cleaned and standardized
 -Subsets generated per SYNOP category
@@ -70,7 +70,7 @@ Step 4: Hyperparameter Tuning
 -max_features: ['sqrt', 'log2', None]
 
 
-Code Structure
+-> Code Structure
 
 Hybrid-RF-FSO-Modeling/
 ├── data/
@@ -86,7 +86,7 @@ Hybrid-RF-FSO-Modeling/
 │   └── 8_results_analysis.ipynb
 ├── README.md
 
-Installation and Usage
+-> Installation and Usage
 Requirements
 -Python 3.8+
 -Jupyter Notebook
@@ -96,15 +96,15 @@ Requirements
 --matplotlib
 --scikit-learn
 
-Setup Instructions
-# 1. Clone the repository
+-> Setup Instructions
+1. Clone the repository
 git clone https://github.com/ADITI-AGGARWAL-0706/RF-FSO-predictive-models.git
 cd RF-FSO-predictive-models
 
-# 2. Install required libraries
+2. Install required libraries
 pip install -r requirements.txt
 
-# 3. Launch Jupyter
+3. Launch Jupyter
 jupyter notebook
 
-# 4. Open and run notebooks in order from /notebooks directory
+4. Open and run notebooks in order from /notebooks directory

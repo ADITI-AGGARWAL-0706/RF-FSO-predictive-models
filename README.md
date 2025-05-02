@@ -1,110 +1,110 @@
 # Developing Predictive Models for Hybrid RF/FSO Systems under Varied Weather Conditions
 
-This repository contains the Jupyter Notebook code and data used for our research on developing and comparing Generic and Specific Random Forest models for predicting RF and FSO channel attenuation under various weather conditions.
+This repository contains the full pipeline for building, comparing, and evaluating predictive models to estimate RF and FSO signal attenuation under a variety of weather conditions. The project leverages machine learning techniques—specifically Random Forest regression—to create robust, weather-adaptive hybrid communication models. Both generic and weather-specific models were evaluated in Part A, while Part B introduced enhanced modeling techniques that incorporate interdependent signal prediction.
 
 Table of Contents
-    1.Introduction
-    2.Dataset Description
-    3.Project Workflow
-    4.Code Structure
-    5.Results Summary
-    6.Installation and Usage
-    7.Future Enhancements
+-Introduction
+-Dataset Description
+-Project Workflow
+-Code Structure
+-Results Summary
+-Installation and Usage
+-Future Enhancements
 
-1.Introduction
+Introduction
+Hybrid RF/FSO communication systems are highly sensitive to atmospheric conditions. The objective of this project is to develop machine learning models that can accurately predict signal attenuation for both RF and FSO links under a range of environmental scenarios—such as fog, rain, dust, snow, and more.
 
-Hybrid RF/FSO communication systems are highly sensitive to environmental conditions. This project aims to improve the accuracy of attenuation predictions by     leveraging Machine Learning models. We implemented and evaluated two approaches:
-    1.Generic Model: A single Random Forest trained on the entire dataset.
-    2.Specific Model: Seven Random Forest models trained on weather-specific subsets of the dataset.
-The primary focus is to compare the predictive performance of these models across various environmental conditions, including Clear Weather, Dust Storm, Fog,     Drizzle, Rain, Snow, and Showers.
+Part A:
+I implemented and compared two baseline approaches:
+-Generic Model: A single Random Forest trained on the full dataset.
+-Specific Models: Seven Random Forest models trained on data subsets based on weather conditions (SYNOP codes).
 
-2.Dataset Description
-The dataset includes 27 features derived from weather parameters and RF/FSO attenuation values:
-    -Target Variables: RFL_Att (RF attenuation) and FSO_Att (FSO attenuation).
-    -Weather Conditions: Categorized using SYNOP codes:
-      - Clear Weather (0), Dust Storm (3), Fog (4), Drizzle (5), Rain (6), Snow (7), Showers (8).
+Part B:
+I introduced two advanced models that integrate predictions between RF and FSO domains:
+-RF-Enhanced FSO Model: Uses predicted RF attenuation as an input to improve FSO attenuation prediction.
+-FSO-Enhanced RF Model: Uses predicted FSO attenuation to enhance RF attenuation modeling.
+These methods aimed to better preserve correlation structures and mutual information between the signal types, resulting in improved model performance.
 
-For preprocessing, the dataset was split into:
-    -Training Dataset: Used to train Generic and Specific models.
-    -Test Dataset: Used to validate and calculate RMSE and R2R2.
+Dataset Description
+The dataset consists of 27 meteorological features along with RF and FSO attenuation values.
 
-3.Project Workflow
+Target Variables:
+-RFL_Att: RF signal attenuation
+-FSO_Att: FSO signal attenuation
+
+Weather Classification (SYNOP Codes):
+0: Clear
+3: Dust Storm
+4: Fog
+5: Drizzle
+6: Rain
+7: Snow
+8: Showers
+
+Splits:
+-Training Set: Used to build and tune models
+-Test Set: Used for performance evaluation
+
+Project Workflow
 Step 1: Data Preprocessing
-
-    -Data was cleaned and standardized.
-    -Subsets were created for each weather condition using SYNOP codes.
-    -Target columns (RFL_Att and FSO_Att) were identified.
+-Data cleaned and standardized
+-Subsets generated per SYNOP category
+-Target columns (RFL_Att and FSO_Att) identified
 
 Step 2: Feature Selection
+-OOB (Out-of-Bag) feature importance used
+-Features removed iteratively
+-Performance tracked via RMSE and R²
 
-    -A feature importance ranking algorithm was applied using Out-of-Bag (OOB) scores.
-    -Features were iteratively removed based on importance, and RMSE and R2R2 were recorded at each step.
+Step 3: Model Building
+-Generic Model trained on entire dataset
+-Specific Models trained per SYNOP weather category
+-RF-Enhanced FSO Model: RF predictions used to assist FSO model
+-FSO-Enhanced RF Model: FSO predictions used to assist RF model
 
-Step 3: Model Creation
+Step 4: Hyperparameter Tuning
+-Grid search with cross-validation was used to find optimal parameters:
+-n_estimators: [50, 100, 150, 200]
+-max_depth: [5, 10, 20, None]
+-min_samples_split: [2, 5, 10]
+-max_features: ['sqrt', 'log2', None]
 
-    1.Generic Model: A single Random Forest model trained on the entire dataset.
-    2.Specific Model: Separate Random Forest models for each weather condition, trained on respective subsets.
 
-Step 4: Model Evaluation
+Code Structure
 
-    -Performance was evaluated using RMSE and R2R2 metrics for both Generic and Specific models.
-    -Comparative analysis highlighted strengths and weaknesses across weather conditions.
-
-4.Code Structure
-
-Hybrid-RF-FSO-Modeling
+Hybrid-RF-FSO-Modeling/
 ├── data/
-│   ├── RFLFSODataFull.csv         
+│   └── RFLFSODataFull.csv
 ├── notebooks/
-│   ├── 1_data_preprocessing.ipynb 
-│   ├── 2_feature_selection.ipynb 
-│   ├── 3_generic_model.ipynb     
-│   ├── 4_specific_model.ipynb     
-│   ├── 5_results_analysis.ipynb  
-├── README.md                      
+│   ├── 1_data_preprocessing.ipynb
+│   ├── 2_feature_selection.ipynb
+│   ├── 3_generic_model.ipynb
+│   ├── 4_specific_model.ipynb
+│   ├── 5_rf_enhanced_fso.ipynb
+│   ├── 6_fso_enhanced_rf.ipynb
+│   ├── 7_correlation_heatmaps.ipynb
+│   └── 8_results_analysis.ipynb
+├── README.md
 
-5.Results Summary
-Key Observations
-
-    -Generic FSO Model: Delivered consistently better RMSE across most weather conditions, except Fog and Snow, where the Specific Model performed better.
-    -Generic RF Model: Achieved lower RMSE and higher R2R2 compared to Specific RF models across all weather conditions.
-    -Specific Models: Excelled in Clear Weather, Drizzle, and Rain conditions for R2R2.
-
-Visualizations
-
-    -RMSE and R2R2 plots for both Generic and Specific models are included in the results notebook.
-    -Comparative graphs illustrate performance across weather conditions.
-
-6.Installation and Usage
+Installation and Usage
 Requirements
+-Python 3.8+
+-Jupyter Notebook
+-Python Libraries:
+--pandas
+--numpy
+--matplotlib
+--scikit-learn
 
-    Python 3.8+
-    Jupyter Notebook
-    Libraries:
-        pandas
-        numpy
-        matplotlib
-        sklearn
+Setup Instructions
+# 1. Clone the repository
+git clone https://github.com/ADITI-AGGARWAL-0706/RF-FSO-predictive-models.git
+cd RF-FSO-predictive-models
 
-Steps to Run
-
-1.Clone the repository:
-git clone https://github.com/your_username/Hybrid-RF-FSO-Modeling.git
-cd Hybrid-RF-FSO-Modeling
-
-2.Install required Python libraries:
+# 2. Install required libraries
 pip install -r requirements.txt
 
-3.Run Jupyter Notebook:
+# 3. Launch Jupyter
 jupyter notebook
 
-4.Open the notebooks in the /notebooks folder and execute them sequentially.
-
-7.Future Enhancements
-
-Future work can focus on:
-
-    -Exploring advanced feature engineering techniques to improve model accuracy.
-    -Incorporating real-time weather data for dynamic model retraining and prediction.
-    -Extending the approach to include additional environmental parameters for enhanced predictive capability.
-    -Comparing other machine learning models to evaluate their performance in this scenario.
+# 4. Open and run notebooks in order from /notebooks directory
